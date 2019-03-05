@@ -36,12 +36,13 @@ function spotifyThis(songName) {
       console.log('=====================Spotify Results ========================');
     for (var i = 0; i < 5; i++) {
         var spotifyResults =
-        ' Artist(s) = ' + response.tracks.items[i].artists[0].name +
-        ' Song Name = ' + response.tracks.items[i].name +
-        ' Preview URL: = ' + response.tracks.items[i].preview_url +
-        ' Album Name = ' + response.tracks.items[i].album.name
+        '\n Artist(s) = ' + response.tracks.items[i].artists[0].name +
+        '\n Song Name = ' + response.tracks.items[i].name +
+        '\n Preview URL: = ' + response.tracks.items[i].preview_url +
+        '\n Album Name = ' + response.tracks.items[i].album.name 
+        
 
-        console.log(spotifyResults)
+        console.log(spotifyResults);
     }
 
     })
@@ -60,14 +61,15 @@ var queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey
 
 axios.get(queryUrl).then(
   function(response) {
-    console.log(" Title: " + response.data.Title);
-    console.log(" Release Year: " + response.data.Released);
-    console.log(" IMDB Rating: " + response.data.Ratings[0].Value);
-    console.log(" Rotten Tomatoes: " + response.data.Ratings[1].Value);
-    console.log(" Production Country: " + response.data.Country);
-    console.log(" Language of Movie: " + response.data.Language);
-    console.log(" Plot of Movie: " + response.data.Plot);
-    console.log(" Actors in Movie: " + response.data.Actors);
+    console.log("========================Movie Search Results===========================")
+    console.log("\n Title: " + response.data.Title);
+    console.log("\n Release Year: " + response.data.Released);
+    console.log("\n IMDB Rating: " + response.data.Ratings[0].Value);
+    console.log("\n Rotten Tomatoes: " + response.data.Ratings[1].Value);
+    console.log("\n Production Country: " + response.data.Country);
+    console.log("\n Language of Movie: " + response.data.Language);
+    console.log("\n Plot of Movie: " + response.data.Plot);
+    console.log("\n Actors in Movie: " + response.data.Actors);
 
     
   }
@@ -88,9 +90,38 @@ axios.get(queryUrl).then(
       
       for( var i = 0; i < 5; i++) {
     var time = response.data[i].datetime
-    console.log('Venue Name: ' + response.data[i].venue.name);
-    console.log('Venue Location: ' + response.data[i].venue.city, response.data[i].venue.country);
-    console.log('Date of Event: ' + moment(time).format('MM/DD/YYYY'));
+    console.log('\n Venue Name: ' + response.data[i].venue.name);
+    console.log('\n Venue Location: ' + response.data[i].venue.city, response.data[i].venue.country);
+    console.log('\n Date of Event: ' + moment(time).format('MM/DD/YYYY'));
       }
 })
 }
+
+
+
+function doWhat() {
+    fs.readFile("random.txt", "utf8", function(error, data) {
+
+        // If the code experiences any errors it will log the error to the console.
+        if (error) {
+          return console.log(error);
+        }
+      
+        // We will then print the contents of data
+        var whatever = data.split(',')
+        var command = whatever[0];
+        var song = whatever[1].replace('"','');
+        console.log(command,song);
+        if (command === 'concert-this') {
+            concert(bandName);
+        }
+        else if ( command === 'spotify-this-song') {
+            spotifyThis(songName);
+        }
+        else if ( command === 'movie-this') {
+            omdbMovie(movieName);
+        }
+        else if ( command === 'do-what-it-says') {
+                doWhat()
+        };
+})}

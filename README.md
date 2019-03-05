@@ -1,1 +1,3 @@
 # liri-node-app
+
+This application will return information depending on which keywords are used to get the information.  There are 4 commands, spotify-this-song, concert-this, movie-this and do-what-it-says.  Each command has a function attached to it and runs it when called.  Spotify-this-song will search spotify for a song of your choosing, concert-this will return information for a touring band, movie-this will search and return information from OMDB, and do-what-it-says will run the information in the random.txt file.  A video of the app is at the following location: https://drive.google.com/open?id=1196j6T8QtCyBiStwFilNQzQCLL8km4-t
